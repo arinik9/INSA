@@ -2,15 +2,15 @@
 /*************************************************************************
                            Cartography  -  description
                              -------------------
-    dÃ©but                : 7 oct. 2013
+    début                : 7 oct. 2013
     copyright            : (C) 2013 par ymarion1
 *************************************************************************/
 
-//---------- RÃ©alisation de la classe <Cartography> (fichier B3107_class.cpp) -------
+//---------- Réalisation de la classe <Cartography> (fichier B3107_class.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include systÃ¨me
+//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 
@@ -21,12 +21,12 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- MÃ©thodes publiques
-// type Cartography::MÃ©thode ( liste des paramÃ¨tres )
+//----------------------------------------------------- Méthodes publiques
+// type Cartography::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
-//} //----- Fin de MÃ©thode
+//} //----- Fin de Méthode
 void Cartography::Display ()
 {
 	cout << "azerty" << endl;
@@ -81,7 +81,7 @@ long Cartography::Count(char *dmp1)
 
 char* Cartography::GetData(float x1, float y1)
 {
-	for(long i=0 ; i < last ; i++)
+	for(long i=1 ; i <= last ; i++)
 	{
 		if(x1==tab_mesure[i].x && y1==tab_mesure[i].y)
 		{
@@ -106,7 +106,7 @@ long Cartography::FindDMP(char *dmp1, int index, float &x1, float &y1)
 	return -1;
 }
 
-//------------------------------------------------- Surcharge d'opÃ©rateurs
+//------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 Cartography::Cartography ( )
@@ -138,5 +138,6 @@ Cartography::~Cartography ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- MÃ©thodes protÃ©gÃ©es
+//----------------------------------------------------- Méthodes protégées
+
 
