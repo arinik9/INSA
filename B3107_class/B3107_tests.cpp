@@ -42,6 +42,9 @@ int main()
 	//fY=-465.2;
 	//long lPos=cart.FindDMP((char*)"SiO2",0,&fX,&fY);
 	//cout << lPos << endl;
+	char *tabc;
+	tabc=cart.GetData(124.6,60);
+	cout << *tabc<<*(tabc+1) << endl;
 
 
 }

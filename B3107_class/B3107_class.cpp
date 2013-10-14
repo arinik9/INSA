@@ -2,15 +2,15 @@
 /*************************************************************************
                            Cartography  -  description
                              -------------------
-    début                : 7 oct. 2013
+    dÃ©but                : 7 oct. 2013
     copyright            : (C) 2013 par ymarion1
 *************************************************************************/
 
-//---------- Réalisation de la classe <Cartography> (fichier B3107_class.cpp) -------
+//---------- RÃ©alisation de la classe <Cartography> (fichier B3107_class.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systÃ¨me
 using namespace std;
 #include <iostream>
 
@@ -21,12 +21,12 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Cartography::Méthode ( liste des paramètres )
+//----------------------------------------------------- MÃ©thodes publiques
+// type Cartography::MÃ©thode ( liste des paramÃ¨tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de MÃ©thode
 void Cartography::Display ()
 {
 	cout << "azerty" << endl;
@@ -106,7 +106,7 @@ long Cartography::FindDMP(char *dmp1, int index, float &x1, float &y1)
 	return -1;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opÃ©rateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 Cartography::Cartography ( )
@@ -138,6 +138,5 @@ Cartography::~Cartography ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
-
+//----------------------------------------------------- MÃ©thodes protÃ©gÃ©es
 
