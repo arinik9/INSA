@@ -31,6 +31,19 @@ int main()
 	cart.Add(300, -456.2, (char*)"SiO2");
 
 	cart.Display();
+
+
+
+	float fX(124.5);
+	float fY(60);
+	long lPos= cart.FindDMP((char*)"SiO2",4,fX,fY);
+	cout << lPos<< fX << " " << fY << endl;
+	//fX=300;
+	//fY=-465.2;
+	//long lPos=cart.FindDMP((char*)"SiO2",0,&fX,&fY);
+	//cout << lPos << endl;
+
+
 }
 //------------------------------------------------- Surcharge d'opérateurs
 

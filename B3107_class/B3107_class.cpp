@@ -30,9 +30,9 @@ using namespace std;
 void Cartography::Display ()
 {
 	cout << "azerty" << endl;
-	for(long i = 0; i < last; i++)
+	for(long i = 1; i <= last; i++)
 	{
-		cout << &tab_mesure[i].dmp << tab_mesure[i].x << " " << tab_mesure[i].y << endl;
+		cout << tab_mesure[i].x << " " << tab_mesure[i].y << " "  << tab_mesure[i].dmp << endl;
 	}
 }
 
@@ -91,15 +91,16 @@ char* Cartography::GetData(float x1, float y1)
 	return '\0';
 }
 
-long Cartography::FindDMP(char *dmp1, int index, float *x1, float *y1)
+long Cartography::FindDMP(char *dmp1, int index, float &x1, float &y1)
 {
-	for(long i=index ; i < last ; i++)
+	for(long i=index+1 ; i <= last ; i++)
 	{
 		if(dmp1 == tab_mesure[i].dmp)
 		{
-			x1 = &tab_mesure[i].x;
-			y1 = &tab_mesure[i].y;
-			return i;
+			cout << "Hello ! "<< i << endl;
+			x1 = tab_mesure[i].x;
+			y1 = tab_mesure[i].y;
+			return i-1;
 		}
 	}
 	return -1;
@@ -119,6 +120,9 @@ Cartography::Cartography ( )
 	TAILLE_STD = 64;
 	tailleMax = TAILLE_STD;
 	tab_mesure = new Mesure[tailleMax];
+	dmp = new char;
+
+
 } //----- Fin de Cartography
 
 
