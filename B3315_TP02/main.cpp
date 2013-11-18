@@ -15,6 +15,9 @@ int main(int argc,char **lstarg)
 		g.Ajouter(ul.aQuelHeure,ul.cible_url,ul.extension,ul.source_url);
 	}
 
+ //Ben nejat yilan
+
 
 	return 0;
 }
+
