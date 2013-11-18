@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <stdlib.h>
 using namespace std;
 
 class LectureEcriture;
@@ -26,7 +27,6 @@ private:
 		typedef map<string, nbHit_Horaires> Cible;
 		typedef map<string, Cible> Referer;
 		Referer analyse;
-
 public:
 	virtual ~Graph();
 	//friend ostream & operator << (ostream & os,const Graph & g);

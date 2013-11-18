@@ -10,14 +10,10 @@ int main(int argc,char **lstarg)
 	while(!l.EstFini())
 	{
 		UnLog ul;
-		ul.aQuelHeure
 		ul=l.ProchainLog();
 		g.Ajouter(ul.aQuelHeure,ul.cible_url,ul.extension,ul.source_url);
 	}
 
- //Ben nejat yilan
-
 
 	return 0;
 }
-

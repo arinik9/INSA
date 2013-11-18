@@ -3,27 +3,24 @@
 
 void Graph::Ajouter(string aQuelHeure,string cible_url,string extension,string source_url)
 {
-	std::string s = g.aQuelHeure;
-//	     int hour = atoi(s.c_str());   //string'i int'e ceviriyo
-
-	//find() metodunun yaptigi, asagidakiyle ayni, iterator ile bakiyo icerigine
-	/*for (Graph::Referer::iterator it = g.analyse.begin(); it != g.analyse.end(); ++it){
-			if(it->first == g.source_url){  .....  }     }*/
-				if(analyse.find(g.source_url) == analyse.end()) // yani key'i bulamadiysa
+	string s = aQuelHeure;
+	int hour = atoi(s.c_str());
+				if(analyse.find(source_url) == analyse.end())
 				{
-
-				    //direkt Ajouter yapariz
-				//	analyse.insert(std::pair(g.source_url, std::pair(g.cible_url,g.nbHit_struct(hour,g.extension)) ) );
-					// insert metodunu duwgun kullanamiyor muyuz?
+					nbHit_Horaires a;
+					a.extension=extension;
+					a.heures[hour-1]++;
+					analyse.insert(make_pair(source_url,make_pair(cible_url,a)));
 				}
-
-			else{//"source var ama cible de var mi" diye bakioruz
-
-					if (analyse.find(g.source_url)->second.find(g.cible_url) == analyse.find(g.source_url)->second.end())
+			else{
+					if (analyse.find(source_url)->second.find(cible_url) == analyse.find(source_url)->second.end())
 					{
-						// yani içteki map'te key'i bulamadiysa, end()'e gider
-				//		analyse.find(g.source_url)->second.insert(std::pair(g.cible_url,g.nbHit_struct(hour,g.extension)));
+						nbHit_Horaires a;
+						a.extension=extension;
+						a.heures[hour-1]++;
+						analyse.find(source_url)->second.insert(make_pair(cible_url,a));
 					}
+					else;
 				}
 }
 
