@@ -13,11 +13,6 @@ struct nbHit_Horaires
 {
 	int heures[24];
 	string extension;
-	nbHit_Horaires(){
-		extension="";
-		for(int i=0;i<24;i++)
-			heures[i]=0;
-	}
 };
 
 
