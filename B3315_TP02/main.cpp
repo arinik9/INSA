@@ -16,7 +16,7 @@ int main(int argc,char **lstarg)
 	}
 
  //Ben nejat yilan
- //Ben de Mahmut yılan
+
 
 	return 0;
 }
