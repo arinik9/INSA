@@ -14,20 +14,18 @@ int main(int argc, char *argv[])
 {
 	Graph g;
 	LectureEcriture l("anonyme.log");
-	while(!l.EstFini())
+	int i=0;
+		while(!l.EstFini())
 	{
 		UnLog ul;
 		ul=l.ProchainLog();
-		cout<<"AJOUT"<<endl;
+		if(ul.aQuelHeure != "" && ul.cible_url != "" && ul.extension != "" && ul.source_url!= "")
 		g.Ajouter(ul.aQuelHeure,ul.cible_url,ul.extension,ul.source_url);
 	}
 	
+		g.sansOption();
+		
 	cout<<"ARG-C "<<argc<<endl;
 	copy(argv,argv+argc-1,ostream_iterator<char *>(cout,";"));
-	if (argc == 1)
-			    {
-				  printf("argv = %s\n" ,argv[0]);
-			    }
-		  return 0;
 
 }
