@@ -12,11 +12,15 @@ UnLog LectureEcriture::ProchainLog()
 		getline(myFile,s,' ');
 
 		getline(myFile,logEnCours.cible_url,' ');  // f="html" mesela
-		unsigned found=logEnCours.cible_url.find_last_of(".");
-		c=logEnCours.cible_url.substr(found+1);
+		  unsigned found=logEnCours.cible_url.find_last_of(".");
+			c=logEnCours.cible_url.substr(found+1);
+			  if (logEnCours.cible_url.find("?") !=std::string::npos){
+					c=c.substr(0,3);
+					  }
+
 		transform(c.begin(),c.end(),c.begin(),::tolower);
 		logEnCours.extension=c;
-		cout << logEnCours.extension <<endl;
+		//cout << logEnCours.extension <<endl;,
 
 		getline(myFile,s,'"');
 		getline(myFile,s,'"');
@@ -30,7 +34,9 @@ UnLog LectureEcriture::ProchainLog()
 
 
 bool LectureEcriture:: EstFini()
-{ return(myFile.eof());}
+{
+return(myFile.eof());
+}
 
 LectureEcriture::LectureEcriture(string nomfic):myFile(nomfic.c_str()) {
 	// TODO Auto-generated constructor stub
