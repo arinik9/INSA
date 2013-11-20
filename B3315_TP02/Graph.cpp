@@ -81,10 +81,10 @@ void Graph::sansOption(){
 			sort(vec.rbegin(),vec.rbegin()+15);// size() yerine 15'de yazabilirdim ama belki cible key 15'ten azdir diye boyle yaptm
 			vec.erase(vec.begin()+15,vec.end());
 		}
-		else
+		else{
 			sort(vec.rbegin(),vec.rend());
 		vec.erase(vec.begin()+size,vec.end());
-
+		     }
 		for(vector<pair<int,string> >::const_iterator i = vec.begin(); i != vec.end(); ++i){
 				cout << i->second << "  " << "(" << i->first << " hits)" << endl;
 			}
