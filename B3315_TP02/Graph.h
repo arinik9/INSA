@@ -36,6 +36,8 @@ public:
 	friend ostream & operator << (ostream & os,const Graph & g);
 	void Ajouter(string aQuelHeure,string cible_url,string extension,string source_url);
 	void sansOption();
+	void OptionL(int nbHitSup);
+	void OptionT(int heure);
 };
 
 	#endif /* GRAPH_H_ */
