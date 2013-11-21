@@ -91,6 +91,43 @@ void Graph::sansOption(){
 
 }
 
+
+//Bu eklenen 2 metod, ajouter yapildiktan sonra kullanilsin diye erase() kullanildi, degistirilebilir
+//Ajouter'den once yapmak istiyosak ona gore bisey yapilabilir
+void Graph::OptionL(int nbHitSup){
+
+		map<string, nbHit_Horaires> ::iterator iterRef;
+			map<string, map<string, nbHit_Horaires> >::iterator iter;
+
+			for ( iter=analyse.begin() ; iter != analyse.end(); iter++ ){
+				int sum=0;
+			    for( iterRef=iter->second.begin(); iterRef != iter->second.end(); iterRef++){
+			    	nbHit_Horaires nbStruct = iterRef->second; //  totalHeures() metodu icin gecerli, ondan tanimladim
+			    	sum += nbStruct.totalHeures();
+			    }
+			    if(sum <= nbHitSup){
+				    analyse.erase(iter);
+		    	}
+			}
+
+}
+
+
+void Graph::OptionT(int heure){
+	map<string, nbHit_Horaires> ::iterator iterRef;
+				map<string, map<string, nbHit_Horaires> >::iterator iter;
+
+				for ( iter=analyse.begin() ; iter != analyse.end(); iter++ ){
+				    for( iterRef=iter->second.begin(); iterRef != iter->second.end(); iterRef++){
+							for(int i=0;i<24;i++){ // gerekli olan saati bir tek sifirlamadik
+								if(i!=heure)
+								iterRef->second.heures[i]=0;
+							}
+				    }
+				}
+}
+
+
 Graph::Graph() {
 	// TODO Auto-generated destructor stub
 }
