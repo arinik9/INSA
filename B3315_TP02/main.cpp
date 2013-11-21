@@ -23,7 +23,13 @@ int main(int argc, char *argv[])
 		g.Ajouter(ul.aQuelHeure,ul.cible_url,ul.extension,ul.source_url);
 	}
 	
-		g.sansOption();
+	/*	g.sansOption();
+		cout << "--------------------- "  << endl;
+		g.OptionT(11); //saat 11-12 arasi sadece
+		cout << g;
+		cout << "--------------------- "  << endl;
+		g.OptionL(2); // Hit sayisi top. 2 ve 2'den buyukse
+		cout << g;*/
 		
 	cout<<"ARG-C "<<argc<<endl;
 	copy(argv,argv+argc-1,ostream_iterator<char *>(cout,";"));
