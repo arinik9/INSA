@@ -1,30 +1,51 @@
-#ifndef LECTUREECRITURE_H_
-#define LECTUREECRITURE_H_
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <algorithm>
+#include "LectureEcriture.h"
 
-using namespace std;
-
-struct UnLog
+UnLog LectureEcriture::ProchainLog()
 {
-	string extension;
-	string cible_url; 
-	string source_url;
-	string aQuelHeure;
-};
+		UnLog logEnCours;
+		string s="",c="";
+		std::size_t foundPoint;
 
-class LectureEcriture {
-private:
-	ifstream myFile;
-public:
+		getline(myFile,s,':');
+		getline(myFile,logEnCours.aQuelHeure,':');
 
-	UnLog ProchainLog();
-	LectureEcriture(string nomfic);
-	bool EstFini();
-	virtual ~LectureEcriture();
+		getline(myFile,s,'"');
+		getline(myFile,s,' ');
 
-};
+		getline(myFile,logEnCours.cible_url,' ');  // f="html" mesela
+		foundPoint=logEnCours.cible_url.find('.');
+		  if (foundPoint != string::npos){
+		  unsigned found=logEnCours.cible_url.find_last_of('.');
+			c=logEnCours.cible_url.substr(found+1);
+		  }
+			  if (logEnCours.cible_url.find("?") !=std::string::npos){
+					c=c.substr(0,3);
+					  }
 
-#endif /* LECTUREECRITURE_H_ */
+		transform(c.begin(),c.end(),c.begin(),::tolower);
+		logEnCours.extension=c;
+		//cout << logEnCours.extension <<endl;,
+
+		getline(myFile,s,'"');
+		getline(myFile,s,'"');
+		getline(myFile,logEnCours.source_url,'"');
+
+		getline(myFile,s,'\n');
+		return logEnCours;
+}
+
+
+
+
+bool LectureEcriture:: EstFini()
+{
+return(myFile.eof());
+}
+
+LectureEcriture::LectureEcriture(string nomfic):myFile(nomfic.c_str()) {
+	// TODO Auto-generated constructor stub
+}
+
+LectureEcriture::~LectureEcriture() {
+	// TODO Auto-generated destructor stub
+}
