@@ -99,15 +99,17 @@ void Graph::OptionL(int nbHitSup){
 		map<string, nbHit_Horaires> ::iterator iterRef;
 			map<string, map<string, nbHit_Horaires> >::iterator iter;
 
-			for ( iter=analyse.begin() ; iter != analyse.end(); iter++ ){
+			for ( iter=analyse.begin() ; iter != analyse.end();){
 				int sum=0;
 			    for( iterRef=iter->second.begin(); iterRef != iter->second.end(); iterRef++){
 			    	nbHit_Horaires nbStruct = iterRef->second; //  totalHeures() metodu icin gecerli, ondan tanimladim
 			    	sum += nbStruct.totalHeures();
 			    }
 			    if(sum <= nbHitSup){
-				    analyse.erase(iter);
-		    	}
+				    analyse.erase(iter++);
+		    	      }
+		    	    else
+		    		++iter;
 			}
 
 }
