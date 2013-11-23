@@ -14,17 +14,20 @@ UnLog LectureEcriture::ProchainLog()
 
 		getline(myFile,logEnCours.cible_url,' ');  // f="html" mesela
 		foundPoint=logEnCours.cible_url.find('.');
-		  if (foundPoint != string::npos){
+		  if (foundPoint != string::npos){ // nokta var mi yok mu diye bakiyoruz
 		  unsigned found=logEnCours.cible_url.find_last_of('.');
 			c=logEnCours.cible_url.substr(found+1);
+			transform(c.begin(),c.end(),c.begin(),::tolower);
+					logEnCours.extension=c;
 		  }
+		  else // yani cible_url'de hic nokta yoksa extension'da yoktur, o yuzden chaine vide
+			  logEnCours.extension="";
+
 			  if (logEnCours.cible_url.find("?") !=std::string::npos){
 					c=c.substr(0,3);
+					transform(c.begin(),c.end(),c.begin(),::tolower);
+							logEnCours.extension=c;
 					  }
-
-		transform(c.begin(),c.end(),c.begin(),::tolower);
-		logEnCours.extension=c;
-		//cout << logEnCours.extension <<endl;,
 
 		getline(myFile,s,'"');
 		getline(myFile,s,'"');
