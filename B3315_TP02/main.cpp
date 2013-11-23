@@ -12,26 +12,37 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	string nomFichier="anonyme.log"; // sans option için kullandim, if'in kosullarindan biri olcak
 	Graph g;
-	LectureEcriture l("anonyme.log");
-	int i=0;
+	LectureEcriture l(nomFichier);
+// -l option'u her zaman -t den sonra gelcek !!
 		while(!l.EstFini())
 	{
 		UnLog ul;
 		ul=l.ProchainLog();
-		if(ul.aQuelHeure != "" && ul.cible_url != "" && ul.extension != "" && ul.source_url!= "")
-		g.Ajouter(ul.aQuelHeure,ul.cible_url,ul.extension,ul.source_url);
+		if(ul.aQuelHeure != "" && ul.cible_url != "" && ul.extension != "" && ul.source_url!= ""){
+			g.Ajouter(ul.aQuelHeure,ul.cible_url,ul.extension,ul.source_url);
+		}
 	}
-	
-	/*	g.sansOption();
+		//g.OptionT(18);
+		//cout << g;
+		g.sansOption();
 		cout << "--------------------- "  << endl;
-		g.OptionT(11); //saat 11-12 arasi sadece
-		cout << g;
+
+		//cout << g;
 		cout << "--------------------- "  << endl;
-		g.OptionL(2); // Hit sayisi top. 2 ve 2'den buyukse
-		cout << g;*/
-		
+		///g.OptionL(200);
+		//g.OptionT(18);
+		//cout << g;
+
 	cout<<"ARG-C "<<argc<<endl;
 	copy(argv,argv+argc-1,ostream_iterator<char *>(cout,";"));
 
+	int k=0;
+	while (k<argc)
+			    {
+				  printf("argv = %s\n" ,argv[k]);
+				  k++;
+			    }
+		  return 0;
 }
