@@ -16,11 +16,10 @@ struct nbHit_Horaires
 {
 	int heures[24];
 	string extension;
-	//vector<int> heures;  // hoca denemisti
+	//vector<int> heures;
 	//nbHit_Horaires():heures(24,0),extenstion(){}
 	nbHit_Horaires & operator = (const nbHit_Horaires &);
 	int totalHeures();
-
 };
 
 
@@ -35,9 +34,12 @@ public:
 	virtual ~Graph();
 	friend ostream & operator << (ostream & os,const Graph & g);
 	void Ajouter(string aQuelHeure,string cible_url,string extension,string source_url);
-	void sansOption();
+	vector<pair<int,string> > sansOption();
+	int GetSize();
 	void OptionL(int nbHitSup);
 	void OptionT(int heure);
+	void CombienDifferentExtension();
+	//vector<int,string> PutInVect();
 };
 
 	#endif /* GRAPH_H_ */
