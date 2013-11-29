@@ -13,9 +13,10 @@ using namespace std;
 int main(int argc, char *argv[])// hocaninki:  int argc,char **lstarg
 {
 	bool booleanT=false,booleanL=false,booleanG=false,booleanX=false;
-	cout<<"ARG-C "<<argc<<endl;
+///	cout<<"ARG-C "<<argc<<endl;
 	//copy(argv,argv+argc-1,ostream_iterator<char *>(cout,";"));
 
+bool boolfichier=false;
  int k=1;
  int hour,hitSup;
  string pathDot;
@@ -90,19 +91,19 @@ while (k<argc)
 			if(sizeS >5 && s.substr(sizeS-4,4) == ".log")
 				{//2 tane ananoy,e.log yazarsa nolur?
 					nomFichier=s;
+					boolfichier=true;
 							//işlemler ....
 				}
 			else{
 				//yukarı da k ları güzel artırırsak burası işe yarar.
 				// yani -t den sonra 12e bakmadan sonraki optiona bakar.
 			}
-			printf("argv = %s\n" ,argv[k]);
+		//	printf("argv = %s\n" ,argv[k]);
 			k++;
  }
 
-	cout << "--------------------- "  << endl;
-	cout << "--------------------- "  << endl;
-
+;
+if(boolfichier){
 
 	Graph g;
 	LectureEcriture l(nomFichier);
@@ -136,5 +137,6 @@ while (k<argc)
 		}
 		g.sansOption(booleanG);
 
+   }
    return 0;
 }
