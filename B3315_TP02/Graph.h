@@ -44,7 +44,7 @@ public:
 	void OptionT(int heure);
 	void CombienDifferentExtension();
 	void OptionX(set<string> & setExt);
-	void OptionG(string pathDot);
+	void OptionG(string pathDot,bool flag);
 	void OptionGTop10(string pathDot,bool flag);
 	//vector<int,string> PutInVect();
 };
