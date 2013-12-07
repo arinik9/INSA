@@ -10,101 +10,184 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])// hocaninki:  int argc,char **lstarg
+int main(int argc, char *argv[])
 {
-	bool booleanT=false,booleanL=false,booleanG=false,booleanX=false;
-///	cout<<"ARG-C "<<argc<<endl;
+	bool booleanT=false,booleanL=false,booleanG=false,booleanX=false,error=false;
+	bool boolFichierVide=false;
+	int CombienFoisOptionL=0,CombienFoisOptionX=0,CombienFoisOptionG=0,CombienFoisOptionT=0;
+	int CombienFoisFichierLog=0,CombienFoisFichierDot=0;
+	//cout<<"ARG-C "<<argc<<endl;
 	//copy(argv,argv+argc-1,ostream_iterator<char *>(cout,";"));
 
-bool boolfichier=false;
+bool boolfichierExiste=false;
  int k=1;
- int hour,hitSup;
+ int hour=0,hitSup=0;
  string pathDot;
  string nomFichier;
-while (k<argc)
+
+
+while (k<argc ) 
 {
 	stringstream ss;
 	string s;
-	ss <<argv[k] ;
-	ss >> s; // string'e donusturmus olduk
+	ss << argv[k] ;
+	ss >> s;
 	int sizeS=s.size();
-	//cout << "size: "<<sizeS << endl;
 			if(s.compare("-x") == 0)
 			{
-				cout << "-x gordum";
+				CombienFoisOptionX++;
+				//cout << "-x gordum"<< endl;
 				booleanX = true;
 				//işlemler ....
 			}
-			if(s.compare("-t") == 0)
+			else if(k != argc-1 && s.compare("-t") == 0)
 			{
+
+				CombienFoisOptionT++;
 				string b;
 				b += argv[k+1];
+
 				int c=atoi(b.c_str());
-				if(b == "0" || (c>0 && c<=23))
+
+				stringstream hh;
+								string h;
+								   hh << c;
+								   hh >> h;
+
+				if(b.length()==h.length() && (b == "0" || (c>0 && c<=23)))
 				{
 					booleanT = true;
 					hour=c;
-					cout  <<"-t gordum sonrasında 0-23 arası sayı ile ! " << endl;
+					//cout  <<"-t gordum sonrasında 0-23 arası sayı ile ! " << endl;
 					//işlemler ....
 				}
 				else
 				{
-					//-t den sonra gelen kısım sayı degil. ona gore kontrol flagleri koyarız.
+					error=true;
 				}
 			}
-			if(s.compare("-l") == 0)
+			else if(k != argc-1 && s.compare("-l") == 0)
 			{
+				CombienFoisOptionL++;
 				string b;
 				b += argv[k+1];
 				int c=atoi(b.c_str());
+
+				stringstream hh;//create a stringstream
+						string h;
+						   hh << c;
+						   hh >> h;
+
 				//cout << "c'nin deger: " << c+1 << endl;
-				if(c>0)
+				if(b.length()==h.length() && c>0)
 				{
 					booleanL = true;
 					hitSup=c;
-					cout << "-l gordum sonrasında 0'dan büyük sayı ile ! " << endl;
+					//cout << "-l gordum sonrasında 0'dan büyük sayı ile ! " << endl;
 					//işlemler ....
 				}
 				else
 				{
+					error=true;
 					//-l den sonra gelen kısım sayı degil ya da 0dan kucuk. ona gore kontrol flagleri koyarız.
 				}
 			}
-			if(s.compare("-g") == 0)
+			else if(s.compare("-g") == 0)
 			{
+				CombienFoisOptionG++;
 				stringstream sss;
 				string ss;
 				sss << argv[k+1] ;
 				sss >> ss;
 				int sizeSS=ss.size();
-				if(ss.substr(sizeSS-4,4)==".dot")
+				if(sizeSS >= 5 && ss.substr(sizeSS-4,4)==".dot")
 				{
+					CombienFoisFichierDot++;
 						pathDot=ss;
 						booleanG = true;
-						cout << "-g gordum .dot uzantisiyla" << endl;
+						//cout << "-g gordum .dot uzantisiyla" << endl;
 						//işlemler ....
 				}
 				else{
+
+					error=true;
 						//bunun if i de else'i de zor.
 				}
 			}
-			if(sizeS >5 && s.substr(sizeS-4,4) == ".log")
-				{//2 tane ananoy,e.log yazarsa nolur?
-					nomFichier=s;
-					boolfichier=true;
-							//işlemler ....
+			else if(sizeS >= 5 && s.substr(sizeS-4,4) == ".log")
+				{ //2 tane ananoyme.log yazarsa nolur?
+				CombienFoisFichierLog++;
+
+				ifstream my_file(s.c_str());
+				 if (my_file.good()) // if le fichier .log est lisible et exist
+				 {
+					 my_file.seekg(0,ios::end);
+					size_t size = my_file.tellg();
+					if( size == 0)
+					{
+					boolFichierVide=true;
+					boolfichierExiste=true;
+					}
+					else if(size != 0){
+					 nomFichier=s;
+					 boolfichierExiste=true;
+					// argc=-1;  // while'den ciksin diye
+					}
+				 }
+				 else{
+					 error=true;
+					 argc=-1;   // while'den ciksin diye
+				 }
 				}
-			else{
+			else{  // mesela -glt gibi bir commande yazarsa, ya da -g option'suz "abc.dot" file yazarsa
+
+				stringstream dd;
+				string d;
+				dd << argv[k-1];
+				dd >> d;
+				if(d.compare("-g") == 0 || d.compare("-t") == 0 || d.compare("-l") == 0){
+					if(error==true) // daha onceden true ise true olarak kalsin, zaten error varmis
+					error=true;		//daha onceden error yoksa false olarak kalsin, yani hic biseyi degistirmesin bu if else
+				}
+				else{
+					//cout << "cas d'error" << endl;
+					error=true;
+				}
+
+
+			//Mahmut'un yorumu:
 				//yukarı da k ları güzel artırırsak burası işe yarar.
 				// yani -t den sonra 12e bakmadan sonraki optiona bakar.
 			}
-		//	printf("argv = %s\n" ,argv[k]);
+			//printf("argv = %s\n" ,argv[k]);
 			k++;
  }
 
-;
-if(boolfichier){
+ if(CombienFoisOptionG>1 || CombienFoisOptionT>1 || CombienFoisOptionL>1 || CombienFoisOptionX>1 || CombienFoisFichierDot>1 || CombienFoisFichierLog>1){
+				cout << "plusieurs fois meme option" << endl;
+				error=true;
+			}
 
+	//cout << "--------------------- "  << endl;
+	//cout << "--------------------- "  << endl;
+
+
+if(!boolfichierExiste){
+ 	cout << "pas de fichier ajouté!! " << endl;
+ 	return 1;
+}
+
+else if(boolfichierExiste && boolFichierVide && !error){
+	 cout << "Fichier est vide \n" << endl;
+  	return 2;
+ }
+
+else if(boolfichierExiste && error){
+ 	 cout << "Error! \n" << endl;
+   	return 3;
+}
+
+else if(boolfichierExiste && !error && !boolFichierVide){
 	Graph g;
 	LectureEcriture l(nomFichier);
 
@@ -130,13 +213,12 @@ if(boolfichier){
 			g.OptionL(hitSup);
 		}
 		if( booleanG == true){
-			//g.OptionG(pathDot);
-			g.OptionGTop10(pathDot,booleanG);
-		//	g.sansOption(); // use for sort output also
+			g.OptionG(pathDot,booleanG);
 			booleanG=false;
 		}
 		g.sansOption(booleanG);
 
-   }
    return 0;
+	}
+
 }
